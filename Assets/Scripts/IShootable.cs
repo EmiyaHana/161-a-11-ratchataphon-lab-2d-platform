@@ -1,7 +1,7 @@
 using Unity.Android.Gradle;
 using UnityEngine;
 
-public interface IShootavle
+public interface IShootable
 {
     public GameObject Bullet { get; set; }
     public Transform ShootPoint { get; set; }
