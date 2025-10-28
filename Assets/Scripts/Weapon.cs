@@ -13,4 +13,24 @@ public abstract class Weapon : MonoBehaviour
         damage = newDamage;
         Shooter = newShooter;
     }
+
+    public int GetShootDirection()
+    {
+        float value = Shooter.ShootPoint.position.x - Shooter.ShootPoint.parent.position.x;
+
+        if (value < 0)
+            return -1;
+        else return 1;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Character character = other.GetComponent<Character>();
+
+        if (character != null) 
+        {
+            OnHitWith(character);
+            Destroy(this.gameObject, 5f);
+        }
+    }
 }

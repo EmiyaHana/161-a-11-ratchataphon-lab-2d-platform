@@ -7,5 +7,8 @@ public interface IShootable
     public Transform ShootPoint { get; set; }
     public float ReloadTime { get; set; }
     public float WaitTime { get; set; }
-    public void Shoot();
+    public void Shoot()
+    {
+        throw new System.NotImplementedException();
+    }
 }
