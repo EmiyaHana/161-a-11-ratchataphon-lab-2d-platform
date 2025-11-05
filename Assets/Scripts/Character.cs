@@ -1,15 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [SerializeField] private int health;
-    [SerializeField] private GameObject healthBarPrefab;
-
-    private HealthBar healthBar;
-    private Transform mainCamera;
-
+    private int health;
     public int Health
     { 
         get => health;
@@ -26,15 +19,6 @@ public abstract class Character : MonoBehaviour
 
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        mainCamera = Camera.main.transform;
-
-        if (healthBarPrefab != null)
-        {
-            GameObject hbObj = Instantiate(healthBarPrefab, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-            healthBar = hbObj.GetComponent<HealthBar>();
-            healthBar.SetMaxHealth(startHealth);
-            healthBar.SetHealth(startHealth);
-        }
     }
 
     public void TakeDamage(int damage)
@@ -54,22 +38,5 @@ public abstract class Character : MonoBehaviour
             return true;
         }
         else return false;
-    }
-
-    private void Update()
-    {
-        if (healthBar != null)
-        {
-            healthBar.transform.position = transform.position + Vector3.up * 1.5f;
-            healthBar.transform.rotation = Quaternion.LookRotation(mainCamera.forward);
-        }
-    }
-
-    private void UpdateHealthBar()
-    {
-        if (healthBar != null)
-        {
-            healthBar.SetHealth(Health);
-        }
     }
 }
