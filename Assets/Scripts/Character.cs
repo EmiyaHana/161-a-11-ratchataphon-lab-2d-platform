@@ -19,12 +19,16 @@ public abstract class Character : MonoBehaviour
 
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        healthBar.setMaxHealthBarValue(startHealth);
     }
 
     public void TakeDamage(int damage)
     {
         Health -= damage;
         Debug.Log($"{this.name} take damage {damage}! | Current HP : {Health}");
+
+        healthBar.setHealthBarValue(Health);
 
         IsDead();
     }
@@ -39,4 +43,6 @@ public abstract class Character : MonoBehaviour
         }
         else return false;
     }
+
+    public HealthBar healthBar;
 }
